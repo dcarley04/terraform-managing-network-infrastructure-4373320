@@ -1,14 +1,13 @@
-resource "aws_eip" "nat" {
-  vpc = true
+resource "aws_eip" "nat_new" {
+  domain = "vpc"
 
   tags    = {
-    Name  = "eip-${var.ngw}"
+    Name  = "eip-${var.ngw}-new"
   }
-
 }
 
 resource "aws_nat_gateway" "nat" {
-  allocation_id  = aws_eip.nat.id
+  allocation_id  = aws_eip.nat_new.id
   subnet_id      = aws_subnet.dev[0].id
 
   tags    = {
